@@ -4,12 +4,12 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Mic2, MoveUpRight } from "lucide-react";
 
-const orbitItems = [
-  { label: "Mindset", angle: 0, delay: 0 },
-  { label: "Discipline", angle: 72, delay: 0.15 },
-  { label: "Vision", angle: 144, delay: 0.3 },
-  { label: "Confiance", angle: 216, delay: 0.45 },
-  { label: "Action", angle: 288, delay: 0.6 },
+const orbitNodes = [
+  { angle: 24, delay: 0 },
+  { angle: 96, delay: 0.15 },
+  { angle: 168, delay: 0.3 },
+  { angle: 240, delay: 0.45 },
+  { angle: 312, delay: 0.6 },
 ];
 
 const waveform = [
@@ -38,7 +38,6 @@ export function SignatureMotionSection() {
   const ringRotate = useTransform(scrollYProgress, [0, 1], [0, 190]);
   const counterRotate = useTransform(scrollYProgress, [0, 1], [0, -135]);
   const beamScale = useTransform(scrollYProgress, [0, 0.55, 1], [0.78, 1.14, 0.9]);
-  const stageSkew = useTransform(scrollYProgress, [0, 0.5, 1], [-8, 0, 8]);
 
   return (
     <section
@@ -49,7 +48,7 @@ export function SignatureMotionSection() {
       <motion.div
         aria-hidden
         style={{ y: haloY }}
-        className="pointer-events-none absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B800FF]/18 blur-3xl"
+        className="pointer-events-none absolute left-1/2 top-1/2 hidden h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B800FF]/14 blur-3xl sm:block"
       />
       <div
         aria-hidden
@@ -78,19 +77,16 @@ export function SignatureMotionSection() {
           </p>
         </motion.div>
 
-        <motion.div
-          className="relative mx-auto flex aspect-square w-full max-w-[40rem] items-center justify-center"
-          style={{ skewY: stageSkew }}
-        >
+        <motion.div className="relative z-10 mx-auto flex aspect-square w-full max-w-[40rem] items-center justify-center overflow-hidden [contain:paint]">
           <motion.div
             aria-hidden
-            className="absolute h-[112%] w-16 rotate-45 bg-gradient-to-b from-transparent via-[#B800FF]/30 to-transparent blur-2xl sm:w-24"
+            className="absolute h-[112%] w-16 rotate-45 bg-gradient-to-b from-transparent via-[#B800FF]/24 to-transparent blur-xl sm:w-24"
             animate={{ x: ["-42%", "42%", "-42%"], opacity: [0.22, 0.58, 0.22] }}
             transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
           />
           <motion.div
             aria-hidden
-            className="absolute h-[102%] w-12 -rotate-45 bg-gradient-to-b from-transparent via-fuchsia-400/22 to-transparent blur-2xl sm:w-20"
+            className="absolute h-[102%] w-12 -rotate-45 bg-gradient-to-b from-transparent via-fuchsia-400/18 to-transparent blur-xl sm:w-20"
             animate={{ x: ["34%", "-34%", "34%"], opacity: [0.18, 0.5, 0.18] }}
             transition={{ duration: 5.6, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -99,7 +95,7 @@ export function SignatureMotionSection() {
             <motion.span
               key={`${particle.x}-${particle.y}`}
               aria-hidden
-              className="absolute rounded-full bg-white shadow-[0_0_18px_rgba(184,0,255,0.85)]"
+              className="absolute rounded-full bg-white shadow-[0_0_14px_rgba(184,0,255,0.7)] will-change-transform"
               style={{
                 left: particle.x,
                 top: particle.y,
@@ -123,7 +119,7 @@ export function SignatureMotionSection() {
           <motion.div
             aria-hidden
             style={{ scale: beamScale }}
-            className="absolute h-[88%] w-[88%] rounded-full border border-[#B800FF]/22 bg-[conic-gradient(from_180deg,transparent,rgba(184,0,255,0.34),transparent,rgba(255,255,255,0.16),transparent,rgba(255,0,208,0.22),transparent)] blur-[0.3px]"
+            className="absolute h-[88%] w-[88%] rounded-full border border-[#B800FF]/22 bg-[conic-gradient(from_180deg,transparent,rgba(184,0,255,0.3),transparent,rgba(255,255,255,0.14),transparent,rgba(255,0,208,0.18),transparent)] blur-[0.3px] will-change-transform"
           />
           <motion.div
             aria-hidden
@@ -148,47 +144,37 @@ export function SignatureMotionSection() {
             transition={{ duration: 1.7, delay: 0.55, repeat: Infinity, ease: "easeOut" }}
           />
 
-          {orbitItems.map((item) => (
+          {orbitNodes.map((item) => (
             <motion.div
-              key={item.label}
+              key={item.angle}
               className="absolute left-1/2 top-1/2"
               style={{
-                transform: `rotate(${item.angle}deg) translateX(clamp(8rem, 21vw, 15rem)) rotate(-${item.angle}deg)`,
+                transform: `rotate(${item.angle}deg) translateX(clamp(9.5rem, 21vw, 15.5rem)) rotate(-${item.angle}deg)`,
               }}
               initial={{ opacity: 0, scale: 0.75 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ delay: item.delay, duration: 0.55, ease: "easeOut" }}
             >
-              <motion.div
-                className="rounded-lg border border-[#B800FF]/35 bg-black/78 px-3 py-2 text-[0.65rem] font-black uppercase tracking-[0.18em] text-white shadow-[0_0_34px_rgba(184,0,255,0.36)] backdrop-blur sm:px-4 sm:text-xs"
-                animate={{ y: [0, -10, 0], boxShadow: ["0 0 18px rgba(184,0,255,0.18)", "0 0 42px rgba(184,0,255,0.5)", "0 0 18px rgba(184,0,255,0.18)"] }}
+              <motion.span
+                className="block size-3 rounded-full border border-white/35 bg-[#B800FF] shadow-[0_0_22px_rgba(184,0,255,0.75)]"
+                animate={{ scale: [0.8, 1.35, 0.8], opacity: [0.55, 1, 0.55] }}
                 transition={{
-                  duration: 3.1,
+                  duration: 2.6,
                   delay: item.delay,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-              >
-                {item.label}
-              </motion.div>
+              />
             </motion.div>
           ))}
 
           <motion.div
-            className="relative z-10 flex size-44 flex-col items-center justify-center rounded-full border border-[#B800FF]/60 bg-black/85 text-center shadow-[0_0_110px_rgba(184,0,255,0.58)] backdrop-blur sm:size-56"
-            initial={{ opacity: 0, scale: 0.86, filter: "blur(10px)" }}
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+            className="relative z-10 flex size-44 flex-col items-center justify-center rounded-full border border-[#B800FF]/60 bg-[radial-gradient(circle_at_50%_35%,rgba(184,0,255,0.22),rgba(10,0,14,0.72)_58%,rgba(5,5,5,0.58))] text-center shadow-[0_0_92px_rgba(184,0,255,0.48)] backdrop-blur-md sm:size-56"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-            animate={{
-              y: [0, -8, 0],
-              boxShadow: [
-                "0 0 80px rgba(184,0,255,0.38)",
-                "0 0 130px rgba(184,0,255,0.62)",
-                "0 0 80px rgba(184,0,255,0.38)",
-              ],
-            }}
           >
             <motion.div
               className="absolute inset-0 rounded-full bg-[#B800FF]/18"

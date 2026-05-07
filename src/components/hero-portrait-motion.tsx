@@ -17,10 +17,10 @@ export function HeroPortraitMotion({ children }: HeroPortraitMotionProps) {
     >
       <motion.div
         aria-hidden
-        className="absolute -inset-10 rounded-full bg-[#B800FF]/22 blur-3xl"
+        className="absolute -inset-8 rounded-full bg-[#B800FF]/18 blur-3xl"
         initial={{ opacity: 0, scale: 0.75 }}
-        animate={{ opacity: [0.25, 0.6, 0.3], scale: [0.88, 1.08, 0.94] }}
-        transition={{ delay: 1.25, duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.22, 0.45, 0.26], scale: [0.9, 1.04, 0.95] }}
+        transition={{ delay: 1.25, duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
       />
       <motion.div
         aria-hidden
@@ -31,8 +31,8 @@ export function HeroPortraitMotion({ children }: HeroPortraitMotionProps) {
       />
       <motion.div
         className="relative"
-        animate={{ y: [0, -10, 0] }}
-        transition={{ delay: 1.8, duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ y: [0, -7, 0] }}
+        transition={{ delay: 1.8, duration: 6, repeat: Infinity, ease: "easeInOut" }}
       >
         {children}
       </motion.div>

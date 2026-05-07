@@ -14,7 +14,11 @@ export function SiteNavigation() {
     let frame = 0;
 
     const updateScrolled = () => {
-      setScrolled(window.scrollY > 18);
+      const nextScrolled = window.scrollY > 18;
+
+      setScrolled((currentScrolled) =>
+        currentScrolled === nextScrolled ? currentScrolled : nextScrolled,
+      );
       frame = 0;
     };
 
