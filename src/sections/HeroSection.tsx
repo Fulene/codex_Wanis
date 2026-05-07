@@ -31,9 +31,7 @@ export function HeroSection() {
 
           <Reveal delay={0.16}>
             <p className="mt-7 max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-              Wanis au Mic t’accompagne avec une formation de développement
-              personnel pensée pour transformer ton état d’esprit, ta discipline
-              et ta vision.
+              Wanis au Mic en a marre de galérer avec des presta fatigués, alors vient et donne lui ton argent !
             </p>
           </Reveal>
 
