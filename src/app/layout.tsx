@@ -16,10 +16,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Wanis",
-    template: "%s | Wanis",
+    default: "Wanis au Mic | Réveille ton potentiel",
+    template: "%s | Wanis au Mic",
   },
-  description: "Modern landing page foundation built with Next.js.",
+  description:
+    "Formation de développement personnel par Wanis au Mic pour transformer ton état d'esprit, ta discipline et ta vision.",
   metadataBase: new URL(siteUrl),
 };
 
@@ -30,8 +31,8 @@ export default function RootLayout({
 }>) {
   return (
     <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      lang="fr"
+      className={`${geistSans.variable} ${geistMono.variable} dark h-full scroll-smooth antialiased`}
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col" suppressHydrationWarning>
